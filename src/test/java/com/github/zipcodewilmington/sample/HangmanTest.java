@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington;
+package com.github.zipcodewilmington.sample;
 
 /**
  * @author xt0fer

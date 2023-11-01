@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 @Disabled
 public class PersonTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"Leon", "Dolio", "Kris", "Desa"})
     public void testSetFirstName(String firstName) {
@@ -30,7 +29,6 @@ public class PersonTest {
     }
 
 
-    @ParameterizedTest
     @ValueSource(strings = {"Hunter", "Durant", "Younger", "Burton"})
     public void testSetLastName(String lastName) {
         // given
@@ -47,7 +45,6 @@ public class PersonTest {
     }
 
 
-    @ParameterizedTest
     @ValueSource(ints = {28, 40, 50, 45})
     public void testSetAge(Integer age) {
         // given
