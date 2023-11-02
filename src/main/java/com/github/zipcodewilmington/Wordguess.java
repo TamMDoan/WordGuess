@@ -20,6 +20,7 @@ public class Wordguess {
         // randomly select one of the words in the list
         // set it to wordToGuess & create playersGuesses with _ _ _
 
+
     }
 
     public String[] getListOfWordsToGuess(){
@@ -56,39 +57,63 @@ public class Wordguess {
     }
 
     public void checkIfGuessIsValid(String letter){
+        // if the letter is in the actual word
         if(Arrays.toString(wordToGuess).contains(letter)){
-            for(int i = 0; i < wordToGuess.length - 1; i++){
+            // loop through the word to find out  what position it's at
+            for(int i = 0; i < wordToGuess.length; i++){
                 if(letter.charAt(0) == wordToGuess[i]){
                     playersGuesses[i] = letter.charAt(0);
                 }
             }
         }
 
-        counter++;
+        counter--;
 
     }
 
     public void runGame(){
         // while keepPlaying
+        Scanner in = new Scanner(System.in);
+        String input;
+        boolean keepPlaying = true;
 
         boolean wordGuessed = false;
         setUpGame();
 
-        while(wordGuessed){
+        while(keepPlaying) {
+            while (!wordGuessed) {
 
-            System.out.println("Current Guesses: ");
-            // removing commas and brackets from the printout
-            System.out.println(Arrays.toString(playersGuesses).replace(",", " ").replace("[","").replace("]",""));
-            System.out.println("You have " + counter + " tries left.");
-            System.out.println("Enter a guess (a single letter): ");
-            Scanner in = new Scanner(System.in);
-            String input = in.nextLine();
+                System.out.println("Current Guesses: ");
+                // removing commas and brackets from the printout
+                System.out.println(Arrays.toString(playersGuesses).replace(",", " ").replace("[", "").replace("]", ""));
 
-            checkIfGuessIsValid(input);
+                if (Arrays.toString(playersGuesses).equals(Arrays.toString(wordToGuess))) {
+                    System.out.println("YAY! YOU WIN!");
+                    wordGuessed = true;
+                } else if (counter == 0) {
+                    System.out.println("YOU LOSE!!!");
+                    break;
+                } else {
+                    System.out.println("You have " + counter + " tries left.");
+                    System.out.println("Enter a guess (a single letter): ");
+                    input = in.nextLine();
 
-            if(wordToGuess == playersGuesses){
-                System.out.println("YAY! YOU WIN!");
-                wordGuessed = true;
+                    checkIfGuessIsValid(input);
+                }
+
+
+            }
+
+            System.out.println("Would you like to continue playing? ");
+            input = in.nextLine();
+
+            if(input.equalsIgnoreCase("no")){
+                keepPlaying = false;
+                System.out.println("Bye Bye....");
+            }
+            else{
+                wordGuessed = false;
+                setUpGame();
             }
         }
     }
