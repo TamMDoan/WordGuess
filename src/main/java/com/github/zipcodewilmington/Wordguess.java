@@ -102,7 +102,7 @@ public class Wordguess {
                 }
 
 
-            }
+            }//
 
             System.out.println("Would you like to continue playing? ");
             input = in.nextLine();
